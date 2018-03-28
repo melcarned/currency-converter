@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Keyboard, Animated, Platform, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 
 import styles from './styles';
 
@@ -12,6 +13,7 @@ class Logo extends Component {
     this.containerImageWidth = new Animated.Value(styles.$largeContainerSize);
     this.imageWidth = new Animated.Value(styles.$largeImageSize);
   }
+
   componentDidMount() {
     let showListener = 'keyboardWillShow';
     let hideListener = 'keyboardWillHide';
@@ -67,6 +69,7 @@ class Logo extends Component {
     const imageStyle = [
       styles.logo,
       { width: this.imageWidth },
+      this.props.tintColor ? { tintColor: this.props.tintColor } : null,
     ];
 
     return (
@@ -89,5 +92,9 @@ class Logo extends Component {
       </View>);
   }
 }
+
+Logo.propTypes = {
+  tintColor: PropTypes.string,
+};
 
 export default Logo;
